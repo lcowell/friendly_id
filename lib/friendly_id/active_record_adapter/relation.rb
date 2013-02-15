@@ -62,7 +62,7 @@ module FriendlyId
           sluggable_ids = sluggable_ids_for([id])
 
           if sluggable_ids.size > 1 && fc.scope?
-            return relation.where(primary_key_column.in(sluggable_ids)).first
+            return relation.where(sluggable_ids.include?(relation.primary_key)).first
           end
 
           sluggable_id = sluggable_ids.first
